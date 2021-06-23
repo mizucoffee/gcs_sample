@@ -22,6 +22,14 @@ get '/file/:id' do
   redirect file.signed_url
 end
 
+get '/file/delete/:id' do
+  data = Post.find(params[:id])
+  file = bucket.file data.file
+  file.delete
+  data.destroy
+  redirect '/'
+end
+
 post '/post' do
   if params[:file]
     img = params[:file]
