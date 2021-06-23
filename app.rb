@@ -15,6 +15,11 @@ get '/' do
   erb :index
 end
 
+get '/file/:file_name' do
+  file = bucket.file params[:file_name]
+  redirect file.signed_url
+end
+
 post '/post' do
   if params[:file]
     img = params[:file]
