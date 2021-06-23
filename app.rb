@@ -12,11 +12,13 @@ storage = Google::Cloud::Storage.new(
 bucket = storage.bucket "gcs-sample-posts"
 
 get '/' do
+  @posts = Post.all
   erb :index
 end
 
-get '/file/:file_name' do
-  file = bucket.file params[:file_name]
+get '/file/:id' do
+  data = Post.find(params[:id])
+  file = bucket.file data.file
   redirect file.signed_url
 end
 

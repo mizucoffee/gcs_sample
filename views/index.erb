@@ -12,5 +12,14 @@
     <input type="file" name="file"/><br>
     <input type="submit"></input>
   </form>
+  <h2>Posts</h2>
+  <ul>
+    <% @posts.each do |post| %>
+    <li>
+      <%= post.body %><br>
+      <a href="/file/<%= post.id %>">開く</a>
+    </li>
+    <% end %>
+  </ul>
 </body>
 </html>
